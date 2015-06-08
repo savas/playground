@@ -7,4 +7,5 @@ On my Mac, I used the following to build the files...
 Blog posts about the code:
 - http://savas.me/2015/06/playing-with-move-semantics-in-cpp-part-1
 - http://savas.me/2015/06/playing-with-move-semantics-in-cpp-part-2
-- 
+
+
