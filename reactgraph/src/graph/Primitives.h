@@ -3,6 +3,7 @@
 #pragma once
 
 #include <vector>
+#include <network/uri.hpp>
 #include "Value.h"
 
 namespace reactive {

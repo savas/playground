@@ -3,13 +3,13 @@
  *
  */
 
-#include "graph/ReactiveNode.h"
+#include "graph/in-memory/InMemoryReactiveNode.h"
 
 using namespace reactive::graph;
 
 int main(int argc, const char* argv[]) {
 
-  ReactiveNode node;
+  InMemoryReactiveNode node;
 
   return 0;
 }

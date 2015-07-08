@@ -5,8 +5,8 @@
 namespace reactive {
 
 template<typename T>
-class Subscription {
-  virtual ~Subscription() = default;
+class SubscriptionIf {
+	virtual ~SubscriptionIf() = default;
 };
 
 }
