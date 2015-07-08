@@ -12,6 +12,8 @@ class ExpensiveToCopy {
     evolution = 0; 
   }
   
+  ExpensiveToCopy(initializer_list<string> strs): msgs(strs) {}
+  
   ExpensiveToCopy(const ExpensiveToCopy& etc): msgs(etc.msgs), evolution(floor(etc.evolution + 1)) { 
     log("copy constructor (expensive)"); 
   }

@@ -40,6 +40,13 @@ ExpensiveToCopy func6() {
   return ExpensiveToCopy(); 
 }
 
+class Foo {
+  public:
+    Foo(const ExpensiveToCopy& etc = {}): etc_(etc) {}
+  private:
+    ExpensiveToCopy etc_;
+};
+
 int main() {
   {
     cout << "Get lambda with value capture" << endl;
@@ -83,4 +90,9 @@ int main() {
     auto f = func6();
   }
   cout << endl;
+  
+  cout << "TESTING" << endl;
+  ExpensiveToCopy etc;
+  Foo foo;
+  
 }
