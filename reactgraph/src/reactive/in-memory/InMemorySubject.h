@@ -3,22 +3,32 @@
 #pragma once
 
 #include <future>
+#include <mutex>
 #include <vector>
 
 #include "../SubjectIf.h"
 
 namespace reactive {
 
+using std::function;
+using std::future;
+using std::mutex;
+using std::vector;
+
 template<typename T>
 class InMemorySubject: SubjectIf<T> {
 public:
-	std::future<SubscriptionIf<T>> subscribe(const ObserverIf<T>&) override;
-	std::future<void> next(const T&) override;
-	std::future<void> error(const T&) override;
-	std::future<void> complete() override;
+	future<SubscriptionIf<T>> subscribe(const ObserverIf<T>&) override;
+	future<void> next(const T&) override;
+	future<void> error(const T&) override;
+	future<void> complete() override;
 
 private:
-	std::vector<ObserverIf<T>> observers_;
+	vector<ObserverIf<T>> observers_;
+	mutex observerMutex_;
+	mutex observableMutex_;
+
+	future<void> forAllObservers(function<void (ObserverIf<T>&)>);
 };
 
 }
