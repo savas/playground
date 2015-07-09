@@ -51,16 +51,19 @@ future<Edges> InMemoryReactiveNode::getOutgoingEdges() const {
 
 future<void> InMemoryReactiveNode::setProperty(const uri& name, const Value& value) {
 	properties_[name] = value;
+	next(*this);
 	return promise<void>().get_future();
 }
 
 future<void> InMemoryReactiveNode::addIncomingEdge(const Identity& edgeId) {
   incomingEdges_.push_back(edgeId);
+	next(*this);
 	return promise<void>().get_future();
 }
 
 future<void> InMemoryReactiveNode::addOutgoingEdge(const Identity& edgeId) {
 	outgoingEdges_.push_back(edgeId);
+	next(*this);
 	return promise<void>().get_future();
 }
 

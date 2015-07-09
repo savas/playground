@@ -20,16 +20,19 @@ future<Identity> InMemoryReactiveEdge::getDestination() const {
 
 future<void> InMemoryReactiveEdge::setSource(const Identity& source) {
 	source_ = source;
+	next(*this);
 	return promise<void>().get_future();
 }
 
 future<void> InMemoryReactiveEdge::setPredicate(const Identity& predicate) {
 	predicate_ = predicate;
+	next(*this);
 	return promise<void>().get_future();
 }
 
 future<void> InMemoryReactiveEdge::setDestination(const Identity& destination) {
 	destination_ = destination;
+	next(*this);
 	return promise<void>().get_future();
 }
 
