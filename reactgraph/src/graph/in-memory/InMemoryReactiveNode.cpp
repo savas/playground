@@ -6,6 +6,7 @@
  */
 
 #include "InMemoryReactiveNode.h"
+#include "Utilities.h"
 
 namespace reactive {
 namespace graph {
@@ -13,7 +14,7 @@ namespace graph {
 using std::promise;
 
 future<SubscriptionIf<NodeT>> InMemoryReactiveNode::subscribe(
-		const ObserverIf<NodeT>& observer) {
+		shared_ptr<ObserverIf<NodeT>> observer) {
 	return subject_.subscribe(observer);
 }
 
@@ -30,23 +31,23 @@ future<void> InMemoryReactiveNode::complete() {
 }
 
 future<Identity> InMemoryReactiveNode::getStreamId() const {
-	return promise<Identity>(streamId_).get_future();
+	return value<Identity>(streamId_);
 }
 
 future<Identity> InMemoryReactiveNode::getId() const {
-	return promise<Identity>(id_).get_future();
+	return value<Identity>(id_);
 }
 
 future<Properties> InMemoryReactiveNode::getProperties() const {
-	return promise<Properties>(properties_).get_future();
+	return value<Properties>(properties_);
 }
 
 future<Edges> InMemoryReactiveNode::getIncomingEdges() const {
-	return promise<Edges>(incomingEdges_).get_future();
+	return value<Edges>(incomingEdges_);
 }
 
 future<Edges> InMemoryReactiveNode::getOutgoingEdges() const {
-	return promise<Edges>(outgoingEdges_).get_future();
+	return value<Edges>(outgoingEdges_);
 }
 
 future<void> InMemoryReactiveNode::setProperty(const uri& name, const Value& value) {

@@ -9,6 +9,7 @@ namespace reactive {
 namespace graph {
 
 using std::future;
+using std::shared_ptr;
 using NodeT = reactive::graph::NodeIf;
 
 class InMemoryReactiveNode: public virtual ReactiveNodeIf {
@@ -16,8 +17,7 @@ public:
 	InMemoryReactiveNode(Identity id): id_ {id} { }
 
 	// ObservableIf
-	future<SubscriptionIf<NodeT>> subscribe(
-			const ObserverIf<NodeT>&) override;
+	future<SubscriptionIf<NodeT>> subscribe(shared_ptr<ObserverIf<NodeT>>) override;
 
 	// ObserverIf
 	future<void> next(const NodeT&) override;
@@ -33,7 +33,7 @@ public:
 	future<Edges> getIncomingEdges() const override;
 	future<Edges> getOutgoingEdges() const override;
 
-	future<void> setProperty(const uri&, const Value&) override;
+	future<void> setProperty(const uri&, const Value &) override;
 	future<void> addIncomingEdge(const Identity&) override;
 	future<void> addOutgoingEdge(const Identity&) override;
 

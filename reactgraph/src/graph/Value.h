@@ -5,7 +5,7 @@
 namespace reactive {
 namespace graph {
 
-class Value {
+struct Value {
 };
 
 }

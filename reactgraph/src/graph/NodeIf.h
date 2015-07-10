@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <map>
 #include <vector>
 
 #include "Identity.h"
@@ -12,8 +13,9 @@ namespace graph {
 
 using network::uri;
 using std::future;
+using std::map;
 using std::vector;
-using Properties = vector<uri, Value>;
+using Properties = map<uri, Value>;
 using Edges = vector<Identity>;
 
 class NodeIf {

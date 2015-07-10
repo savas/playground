@@ -1,5 +1,6 @@
 
 #include "InMemoryReactiveEdge.h"
+#include "Utilities.h"
 
 namespace reactive {
 namespace graph {
@@ -7,15 +8,15 @@ namespace graph {
 using std::promise;
 
 future<Identity> InMemoryReactiveEdge::getSource() const {
-	return promise<Identity>(source_).get_future();
+  return value<Identity>(source_);
 }
 
 future<Identity> InMemoryReactiveEdge::getPredicate() const {
-	return promise<Identity>(predicate_).get_future();
+  return value<Identity>(predicate_);
 }
 
 future<Identity> InMemoryReactiveEdge::getDestination() const {
-  return promise<Identity>(destination_).get_future();
+  return value<Identity>(destination_);
 }
 
 future<void> InMemoryReactiveEdge::setSource(const Identity& source) {

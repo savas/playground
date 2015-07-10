@@ -12,7 +12,7 @@ using std::future;
 
 class InMemoryReactiveEdge: public InMemoryReactiveNode, public virtual ReactiveEdgeIf {
 public:
-	InMemoryReactiveEdge(Identity id): InMemoryReactiveNode {id} {}
+	InMemoryReactiveEdge(Identity id): InMemoryReactiveNode(id) {}
 
 	future<Identity> getSource() const override;
 	future<Identity> getPredicate() const override;

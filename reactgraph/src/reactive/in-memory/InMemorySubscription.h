@@ -5,7 +5,8 @@
 namespace reactive {
 
 template<typename T>
-class InMemorySubscription: SubscriptionIf<T> {
+class InMemorySubscription: public SubscriptionIf<T> {
+public:
 };
 
 }

@@ -10,7 +10,7 @@
 namespace reactive {
 
 template<typename T>
-class SubjectIf: ObserverIf<T>, ObservableIf<T> {
+class SubjectIf: public ObserverIf<T>, public ObservableIf<T> {
 public:
 	virtual ~SubjectIf() = default;
 
