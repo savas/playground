@@ -10,7 +10,7 @@ find_package(Boost COMPONENTS system filesystem REQUIRED)
 
 #set(CXX "/usr/local/Cellar/gcc/5.1.0/bin/g++-5")
 #set(CMAKE_CXX_COMPILER ${CXX})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(SOURCE_FILES
     in-memory/InMemoryReactiveEdge.cpp

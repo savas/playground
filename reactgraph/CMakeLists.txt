@@ -12,12 +12,12 @@ link_directories(/usr/local/lib)
 
 #set(CXX "/usr/local/Cellar/gcc/5.1.0/bin/g++-5")
 #set(CMAKE_CXX_COMPILER ${CXX})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(SOURCE_FILES
     src/main.cpp)
 
 add_subdirectory(src/graph)
 
-add_executable(testgraph ${SOURCE_FILES})
+add_executable(testgraph ${SOURCE_FILES} src/reactive/in-memory/InMemoryObserver.h)
 target_link_libraries(testgraph ${Boost_LIBRARIES} network-uri reactgraph)

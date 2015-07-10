@@ -3,20 +3,29 @@
  *
  */
 
+#include <iostream>
+
 #include "graph/in-memory/InMemoryReactiveNode.h"
 #include "graph/in-memory/InMemoryReactiveEdge.h"
+#include "reactive/in-memory/InMemoryLambdaObserver.h"
 
 #include "reactive/in-memory/InMemorySubject.h"
 
+using namespace std;
 using namespace reactive;
 using namespace reactive::graph;
 
-int main(int argc, const char* argv[]) {
+void testreactive() {
   InMemorySubject<int> subject;
+  InMemoryLambdaObserver<int> observer { [](int i) { cout << i << endl; }};
+  subject.subscribe(make_shared<InMemoryLambdaObserver<int>>(observer));
 
-  subject.next(10);
+  subject.next(10).wait();
+  subject.next(20).wait();
+}
 
-	uri friendPredicate {"graph:predicates/friend"};
+void testgraph() {
+  uri friendPredicate {"graph:predicates/friend"};
 
   InMemoryReactiveNode savas(uri("graph:people/savas")), jim(uri("graph:people/jim"));
   InMemoryReactiveEdge frnd(uri("graph:ids/savas-friends-jim"));
@@ -24,9 +33,15 @@ int main(int argc, const char* argv[]) {
   frnd.setPredicate(friendPredicate).wait();
   frnd.setDestination(jim.getId().get()).wait();
 
-  savas.addOutgoingEdge(frnd.getId().get()).wait();
+  InMemoryLambdaObserver<NodeIf> observer { [](const NodeIf& node) { cout << node.getId().get() << endl; }};
+  savas.subscribe(make_shared<InMemoryLambdaObserver<NodeIf>>(observer));
 
-  return 0;
+  savas.addOutgoingEdge(frnd.getId().get()).wait();
 }
 
+int main(int argc, const char* argv[]) {
+  testreactive();
+  testgraph();
+  return 0;
+}
 
