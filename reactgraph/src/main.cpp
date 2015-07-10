@@ -18,7 +18,7 @@ using namespace reactive::graph;
 void testreactive() {
   InMemorySubject<int> subject;
   InMemoryLambdaObserver<int> observer { [](int i) { cout << i << endl; }};
-  subject.subscribe(make_shared<InMemoryLambdaObserver<int>>(observer));
+  subject.subscribe(make_shared<InMemoryLambdaObserver<int>>(move(observer)));
 
   subject.next(10).wait();
   subject.next(20).wait();

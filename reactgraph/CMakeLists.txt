@@ -19,5 +19,5 @@ set(SOURCE_FILES
 
 add_subdirectory(src/graph)
 
-add_executable(testgraph ${SOURCE_FILES} src/reactive/in-memory/InMemoryObserver.h)
+add_executable(testgraph ${SOURCE_FILES})
 target_link_libraries(testgraph ${Boost_LIBRARIES} network-uri reactgraph)
