@@ -17,8 +17,9 @@ using namespace reactive::graph;
 
 void testreactive() {
   InMemorySubject<int> subject;
-  InMemoryLambdaObserver<int> observer { [](int i) { cout << i << endl; }};
-  subject.subscribe(make_shared<InMemoryLambdaObserver<int>>(move(observer)));
+  subject.subscribe(make_shared<InMemoryLambdaObserver<int>>(
+    [](int i) { cout << i << endl; }
+  ));
 
   subject.next(10).wait();
   subject.next(20).wait();
@@ -33,8 +34,9 @@ void testgraph() {
   frnd.setPredicate(friendPredicate).wait();
   frnd.setDestination(jim.getId().get()).wait();
 
-  InMemoryLambdaObserver<NodeIf> observer { [](const NodeIf& node) { cout << node.getId().get() << endl; }};
-  savas.subscribe(make_shared<InMemoryLambdaObserver<NodeIf>>(observer));
+  savas.subscribe(make_shared<InMemoryLambdaObserver<NodeIf>>(
+    [](const NodeIf& node) { cout << node.getId().get() << endl; }
+  ));
 
   savas.addOutgoingEdge(frnd.getId().get()).wait();
 }
