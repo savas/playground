@@ -9,10 +9,11 @@ namespace reactive {
 namespace graph {
 
 using std::future;
+using std::string;
 
 class InMemoryReactiveEdge: public InMemoryReactiveNode, public virtual ReactiveEdgeIf {
 public:
-	InMemoryReactiveEdge(Identity id): InMemoryReactiveNode(id) {}
+	InMemoryReactiveEdge(const Identity& id): InMemoryReactiveNode(id) {}
 
 	future<Identity> getSource() const override;
 	future<Identity> getPredicate() const override;

@@ -10,11 +10,12 @@ namespace graph {
 
 using std::future;
 using std::shared_ptr;
+using std::string;
 using NodeT = reactive::graph::NodeIf;
 
 class InMemoryReactiveNode: public virtual ReactiveNodeIf {
 public:
-	InMemoryReactiveNode(Identity id): id_ {id} { }
+	InMemoryReactiveNode(const Identity& id): id_ {id} {}
 
 	// ObservableIf
 	future<SubscriptionIf<NodeT>> subscribe(shared_ptr<ObserverIf<NodeT>>) override;

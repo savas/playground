@@ -26,12 +26,11 @@ void testreactive() {
 }
 
 void testgraph() {
-  uri friendPredicate {"graph:predicates/friend"};
-
-  InMemoryReactiveNode savas(uri("graph:people/savas")), jim(uri("graph:people/jim"));
+  InMemoryReactiveNode savas("graph:people/savas"), jim("graph:people/jim");
   InMemoryReactiveEdge frnd(uri("graph:ids/savas-friends-jim"));
+
   frnd.setSource(savas.getId().get()).wait();
-  frnd.setPredicate(friendPredicate).wait();
+  frnd.setPredicate("graph:predicates/friend").wait();
   frnd.setDestination(jim.getId().get()).wait();
 
   savas.subscribe(make_shared<InMemoryLambdaObserver<NodeIf>>(
